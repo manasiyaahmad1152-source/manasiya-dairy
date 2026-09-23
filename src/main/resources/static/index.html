@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Manasiya Dairy</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<div class="sidebar"><div class="brand">🥛 <span>Manasiya Dairy</span></div>
+<nav><button class="active" onclick="showPage('dashboard',this)">Dashboard</button>
+<button onclick="showPage('customers',this)">Customers</button><button onclick="showPage('milk',this)">Milk Entry</button>
+<button onclick="showPage('bills',this)">Bills</button><button onclick="showPage('reports',this)">Reports</button></nav>
+<div class="side-bottom">Full Stack Java<br><small>Mini Project</small></div></div>
+<main><header><div><h1 id="pageTitle">Dashboard</h1><p>Manage your dairy business easily.</p></div><div class="date" id="today"></div></header>
+<section id="dashboard" class="page"><div class="cards"><div class="card"><span>Customers</span><b id="customerCount">0</b></div><div class="card"><span>Today's Milk</span><b>0 L</b></div><div class="card"><span>Pending Bills</span><b>₹0</b></div><div class="card"><span>Today's Sales</span><b>₹0</b></div></div>
+<div class="panel"><h2>Welcome to Manasiya Dairy</h2><p>Use the menu to add customers and record daily milk.</p><div class="quick"><button onclick="showPage('customers')">+ Add Customer</button><button onclick="showPage('milk')">+ Milk Entry</button></div></div></section>
+<section id="customers" class="page hidden"><div class="panel"><div class="panel-head"><h2>Customers</h2><button onclick="openModal()">+ Add Customer</button></div>
+<div class="search"><input id="search" placeholder="Search customer..." oninput="renderCustomers()"></div>
+<table><thead><tr><th>Name</th><th>Phone</th><th>Address</th><th>Rate/L</th><th>Actions</th></tr></thead><tbody id="customerRows"></tbody></table></div></section>
+<section id="milk" class="page hidden"><div class="panel"><h2>Daily Milk Entry</h2><div class="form-grid">
+<label>Customer<select id="milkCustomer"></select></label><label>Date<input type="date" id="milkDate"></label>
+<label>Morning (L)<input type="number" id="morning" min="0" step=".5" value="0"></label><label>Evening (L)<input type="number" id="evening" min="0" step=".5" value="0"></label>
+</div><button onclick="saveMilk()">Save Milk Entry</button><div id="milkMsg" class="msg"></div></div></section>
+<section id="bills" class="page hidden"><div class="panel"><h2>Monthly Bill</h2><div class="form-grid"><label>Customer<select id="billCustomer"></select></label><label>Month<input type="month" id="billMonth"></label></div>
+<button onclick="generateBill()">Generate Bill</button><div id="billResult"></div></div></section>
+<section id="reports" class="page hidden"><div class="panel"><h2>Reports</h2><p>Reports module is ready for the next phase: customer-wise, date-wise and monthly summaries.</p></div></section>
+</main>
+<div id="modal" class="modal hidden"><div class="modal-box"><div class="panel-head"><h2>Add Customer</h2><button class="x" onclick="closeModal()">×</button></div>
+<label>Name<input id="cName" placeholder="Customer name"></label><label>Phone<input id="cPhone" placeholder="10-digit mobile"></label>
+<label>Address<input id="cAddress" placeholder="Address"></label><label>Milk Rate (₹/L)<input id="cRate" type="number" value="60"></label>
+<button onclick="addCustomer()">Save Customer</button><div id="customerMsg" class="msg"></div></div></div>
+<script src="app.js"></script></body></html>
